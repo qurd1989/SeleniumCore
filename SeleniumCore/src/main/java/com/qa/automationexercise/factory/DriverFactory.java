@@ -1,4 +1,4 @@
-package example.base;
+package com.qa.automationexercise.factory;
 
 import java.time.Duration;
 

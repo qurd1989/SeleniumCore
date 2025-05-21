@@ -1,4 +1,4 @@
-package parallel;
+package stepDefinitions;
 
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.Cucumber;
@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "resources/parallel",
-		glue = {"parallel"},
+		features = "SeleniumCore/resources/parallel",
+		glue = {"stepDefinitions"},
 		plugin = {
 				"pretty",
 				"html:target/cucumber-reports.html",

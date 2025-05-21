@@ -1,4 +1,4 @@
-package example.utils;
+package com.qa.automationexercise.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

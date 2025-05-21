@@ -6,9 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-import example.utils.ConfigReader;
+import com.qa.automationexercise.utils.ConfigReader;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 

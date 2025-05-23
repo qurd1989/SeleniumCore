@@ -20,7 +20,7 @@ public class BaseTest {
 	public void setup() throws NumberFormatException, Exception {
 		df = new DriverFactory();
 		
-		df.initProp();
+		prop = df.initProp();
 		
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);

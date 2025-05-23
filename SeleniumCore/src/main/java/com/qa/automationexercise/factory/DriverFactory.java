@@ -62,7 +62,7 @@ public class DriverFactory {
 			}
 	        getDriver().get(prop.getProperty("url"));
 	        
-	        return (WebDriver) driver;
+	        return  driver.get();
 	    }
 	    
 	    /**
@@ -72,7 +72,7 @@ public class DriverFactory {
 	    public Properties initProp()  {
 	    	prop = new Properties();
 	    	try {
-				FileInputStream ip = new FileInputStream(".src/test/resources/config/config.properties");
+				FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
 				prop.load(ip);
 				
 			} catch (FileNotFoundException e) {

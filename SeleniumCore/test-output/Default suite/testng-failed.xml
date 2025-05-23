@@ -5,9 +5,10 @@
     <classes>
       <class name="com.qa.automationexercise.tests.LoginPageTest">
         <methods>
-          <include name="logoExistTest"/>
+          <include name="loginPageTitleTest"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="loginTest"/>
         </methods>
       </class> <!-- com.qa.automationexercise.tests.LoginPageTest -->
     </classes>

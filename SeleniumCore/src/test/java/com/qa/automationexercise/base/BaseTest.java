@@ -1,5 +1,33 @@
 package com.qa.automationexercise.base;
 
-public class BaseTest {
+import java.util.Properties;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+
+import com.qa.automationexercise.factory.DriverFactory;
+import com.qa.automationexercise.pages.LoginPage;
+
+public class BaseTest {
+	DriverFactory df;
+	WebDriver driver;
+	Properties prop;
+	
+	protected LoginPage loginPage;
+	
+	@BeforeTest
+	public void setup() throws NumberFormatException, Exception {
+		df = new DriverFactory();
+		
+		df.initProp();
+		
+		driver = df.initDriver(prop);
+		loginPage = new LoginPage(driver);
+	}
+	
+	@AfterTest
+	public void tearDown() {
+		driver.quit();
+	}
 }

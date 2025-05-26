@@ -65,7 +65,7 @@ public class LoginPage {
  		driver.findElement(loginBtn).click();
  		String accountPageTitle = driver.getTitle();
  		System.out.println("Account Page Title: " + accountPageTitle);
- 		return driver.getTitle();
+ 		return accountPageTitle;
  		
  	}
 }

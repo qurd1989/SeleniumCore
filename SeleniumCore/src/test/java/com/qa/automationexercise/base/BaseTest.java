@@ -12,7 +12,7 @@ import com.qa.automationexercise.pages.LoginPage;
 public class BaseTest {
 	DriverFactory df;
 	WebDriver driver;
-	Properties prop;
+	protected Properties prop;
 	
 	protected LoginPage loginPage;
 	

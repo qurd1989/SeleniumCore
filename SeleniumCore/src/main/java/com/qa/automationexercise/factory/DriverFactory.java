@@ -37,8 +37,6 @@ public class DriverFactory {
 	    	
 	    	String  browsername = prop.getProperty("browser");
 	    	
-	        
-
 	        switch (browsername.toLowerCase().trim()) {
 	            case "chrome":
 	                WebDriverManager.chromedriver().setup();

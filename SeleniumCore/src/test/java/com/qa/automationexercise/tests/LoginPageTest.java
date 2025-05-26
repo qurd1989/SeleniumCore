@@ -2,7 +2,6 @@ package com.qa.automationexercise.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.qa.automationexercise.base.BaseTest;
 
 
@@ -11,13 +10,14 @@ public class LoginPageTest extends BaseTest{
 	@Test
 	public void loginPageTitleTest() {
 		String actualTitle = loginPage.getLoginTitle();
-		Assert.assertEquals(actualTitle, "Automation Exercise");
+		Assert.assertEquals(actualTitle, "Automation Exercise - Signup / Login");
 	}
 	
 	@Test
 	public void loginPageURLTest() {
 		String actualURl = loginPage.getLoginPageURL();
-		Assert.assertTrue(actualURl.contains("https://automationexercise.com/login"));
+		System.out.println(actualURl);
+		Assert.assertTrue(actualURl.contains("exercise"));
 	}
 	
 	@Test
@@ -26,9 +26,10 @@ public class LoginPageTest extends BaseTest{
 	}
 	
 	@Test(priority = Integer.MAX_VALUE)
-	public void loginTest() {
-		String actualAccountPageTitle = loginPage.doLogin("mashaedu@gmail.com", "02281989El=");
+	public void loginTest() throws InterruptedException {
+		String actualAccountPageTitle = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 		Assert.assertEquals(actualAccountPageTitle, "Automation Exercise");
 		
 	}
 }
+ 

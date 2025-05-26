@@ -12,7 +12,7 @@ import com.qa.automationexercise.pages.LoginPage;
 public class BaseTest {
 	DriverFactory df;
 	WebDriver driver;
-	Properties prop;
+	protected Properties prop;
 	
 	protected LoginPage loginPage;
 	
@@ -20,7 +20,7 @@ public class BaseTest {
 	public void setup() throws NumberFormatException, Exception {
 		df = new DriverFactory();
 		
-		df.initProp();
+		prop = df.initProp();
 		
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);

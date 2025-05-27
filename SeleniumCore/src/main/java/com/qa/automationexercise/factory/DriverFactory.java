@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.qa.automationexercise.errors.AppError;
 import com.qa.automationexercise.exceptions.BrowserExeption;
 import com.qa.automationexercise.utils.ConfigReader;
 
@@ -47,7 +48,8 @@ public class DriverFactory {
 	                driver.set(new EdgeDriver());
 	                break;
 	            default:
-	                throw new BrowserExeption("Unsupported browser: " + browsername);
+	            	System.out.println(AppError.INVALID_BROWSER_MSG + browsername + " is Invalid");
+	                throw new BrowserExeption(AppError.INVALID_BROWSER_MSG);
 	        }
 
 	        getDriver().manage().window().maximize();

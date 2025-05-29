@@ -69,13 +69,13 @@ public class DriverFactory {
 	     * this methid is used to init properties the config file 
 	     * @return
 	     */
-	    public Properties initProp()  {
+	    public Properties initProp()  { 
 	    	prop = new Properties();
 	    	try {
 				FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
 				prop.load(ip);
 				
-			} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException e) { 
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {

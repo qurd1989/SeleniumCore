@@ -9,8 +9,13 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.qa.automationexercise.utils.ElementUtils;
+
 public class LoginPage {
 	private WebDriver driver;
+	private ElementUtils eleUtil;
+	
+	
 	// 1. private By locators: page obbjects
  	private By username = By.xpath("(//*[@name='email'])[1]");
  	private By password = By.xpath("//*[@name='password']");

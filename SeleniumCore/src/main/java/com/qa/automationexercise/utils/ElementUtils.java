@@ -1,5 +1,27 @@
 package com.qa.automationexercise.utils;
 
-public class ElementUtils {
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
+public class ElementUtils {
+	private WebDriver driver;
+	private Actions act;
+	
+	public ElementUtils(WebDriver driver) {
+		this.driver = driver;
+		act = new Actions(driver);
+	}
+	
+	public void doClick(By locator) { 
+		getElement(locator).click();
+	}
+	public void doClick(By locator, int timeOut) {
+		
+	}
+	public WebElement getElement(By locator) {
+		return driver.findElement(locator);	
+	}
+	
 }

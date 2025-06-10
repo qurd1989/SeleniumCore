@@ -23,5 +23,8 @@ public class ElementUtils {
 	public WebElement getElement(By locator) {
 		return driver.findElement(locator);	
 	}
+	public  void doSendKeys(By locator, String value) {
+		getElement(locator).sendKeys(value);
+	}
 	
 }

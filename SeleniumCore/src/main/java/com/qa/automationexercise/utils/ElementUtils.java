@@ -27,4 +27,10 @@ public class ElementUtils {
 		getElement(locator).sendKeys(value);
 	}
 	
+	public void waitElement(By locator, int n) {
+		
+	}
+	public void waitElement(By locator, int n, String s) {
+	
+	}
 }

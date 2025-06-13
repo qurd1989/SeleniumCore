@@ -33,4 +33,13 @@ public class ElementUtils {
 	public void waitElement(By locator, int n, String s) {
 	
 	}
+	public String getElementText(By locator) {
+		String eleText = getElement(locator).getText();
+		if (eleText != null) {
+			return eleText;
+		}else {
+			System.out.println("Element test is null: " + eleText);
+		}
+		return null;
+	}
 }

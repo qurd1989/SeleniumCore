@@ -63,4 +63,7 @@ public class ElementUtils {
 			return false;
 		}
 	}
+	public String doElementGetAttribute(By locator, String attrName) {
+		return getElement(locator).getAttribute(attrName);
+	}
 }

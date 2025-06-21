@@ -23,7 +23,7 @@ public class LoginPage {
  	private By forgotPwdLink = By.xpath("");
  	private By logo = By.xpath("//*[contains(@src,'/static/images/home/logo.png')]");
  	private By loginandsignupTap = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a/text()");
- 	
+ 
  	//2. Public Page Constants
  	public LoginPage(WebDriver driver) {
  		this.driver = driver;
@@ -63,6 +63,8 @@ public class LoginPage {
  	
  	public String doLogin(String userName, String pwd) {
  	//	navigateToLoginPage();
+ 		 
+		eleUtil.doElementGetAttribute(username, "placeholder");  
  		driver.findElement(username).clear();
  		driver.findElement(username).sendKeys(userName);
 		driver.findElement(password).clear();

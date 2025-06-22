@@ -1,5 +1,6 @@
 package com.qa.automationexercise.utils;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
@@ -65,5 +66,18 @@ public class ElementUtils {
 	}
 	public String doElementGetAttribute(By locator, String attrName) {
 		return getElement(locator).getAttribute(attrName);
+	}
+	
+	public List<WebElement> getElements(By locator) { 
+		return driver.findElements(locator);
+	}
+	
+	public int getElementsCount(By locator) {
+		return getElements(locator).size();
+	}
+	
+	public void getElementsTextList(By locator) {
+		List<WebElement> elelist = getElements(locator);
+		
 	}
 }

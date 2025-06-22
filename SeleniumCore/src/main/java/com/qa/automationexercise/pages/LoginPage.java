@@ -27,6 +27,7 @@ public class LoginPage {
  	//2. Public Page Constants
  	public LoginPage(WebDriver driver) {
  		this.driver = driver;
+ 		this.eleUtil = new ElementUtils(driver);
  	}
  	
  	public boolean isOnLoginPage() {
@@ -64,7 +65,8 @@ public class LoginPage {
  	public String doLogin(String userName, String pwd) {
  	//	navigateToLoginPage();
  		 
-		eleUtil.doElementGetAttribute(username, "placeholder");  
+		String text = eleUtil.doElementGetAttribute(username, "placeholder");
+		System.out.println(text + " New Text");
  		driver.findElement(username).clear();
  		driver.findElement(username).sendKeys(userName);
 		driver.findElement(password).clear();

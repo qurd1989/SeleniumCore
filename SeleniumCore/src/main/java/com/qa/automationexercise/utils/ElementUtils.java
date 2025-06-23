@@ -1,5 +1,7 @@
 package com.qa.automationexercise.utils;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -7,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import com.qa.automationexercise.exceptions.FrameworkException;
 
 public class ElementUtils {
 	private WebDriver driver;
@@ -76,8 +80,53 @@ public class ElementUtils {
 		return getElements(locator).size();
 	}
 	
-	public void getElementsTextList(By locator) {
+	public List<String > getElementsTextList(By locator) {
 		List<WebElement> elelist = getElements(locator);
+		List<String> eleTextList = new ArrayList<String>();
 		
+		for(WebElement e : elelist) {
+			String eleText = e.getText();
+			if (eleText.length() != 0) {
+				eleTextList.add(eleText);
+			}
+		}
+		return eleTextList;
+	}
+	public void printElementList(By locator) { 
+		List<String> eleTextList = getElementsTextList(locator);
+		for(String e : eleTextList) {
+			System.out.println(e);
+		}
+	}
+	
+	//this function is used for search function of the application
+	public boolean doSreach(By searchedField, String searchkey, By suggestions, String matchedValue) throws InterruptedException {
+		boolean flag = false; 
+		doSendKeys(searchedField, searchkey);
+		Thread.sleep(3000);
+		List<WebElement> suggList = getElements(suggestions);
+		int suggListSize = suggList.size();
+		System.out.println("Total number of  suggetions: " + suggListSize);
+		
+		if (suggListSize == 0) { 
+			System.out.println("No suggestions found....");
+			throw new FrameworkException("No Suggestions FOUND!");
+			
+		}
+		for (WebElement webElement : suggList) {
+			String text = webElement.getText();
+			System.out.println(text);
+			if (text.contains(matchedValue)) {
+				webElement.click();
+				flag = true;
+				break;
+			}
+		}
+		
+		if (flag) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

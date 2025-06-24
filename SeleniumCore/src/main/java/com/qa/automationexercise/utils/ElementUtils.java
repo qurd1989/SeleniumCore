@@ -135,5 +135,39 @@ public class ElementUtils {
 			return false;
 		}
 	}
+	
+	
+	public boolean isElementPresent(By locator) {
+		if (getElementsCount(locator) == 1) {
+			return true;
+		}else { 
+			return false;
+		}
+	}
+	
+	public boolean isElementPresent(By locator, int expectedElementCount) {
+		if (getElementsCount(locator) == expectedElementCount ) {
+			return true;
+		}else { 
+			return false;
+		}
+	}
+	
+	public void selectDropdownValueByVisibleText(By locator, String visibleText) {
+		Select select = new Select(getElement(locator));
+		select.selectByVisibleText(visibleText);
+		
+	}
+	
+	public void selectDropdownValueByIndex(By locator, int index) {
+		Select select = new Select(getElement(locator));
+		select.selectByIndex(index);
+		
+	}
+	
+	public void selectDropdownValueByValue(By locator, String value) {
+		Select select = new Select(getElement(locator));
+		select.selectByValue(value);
+	}
 
 }

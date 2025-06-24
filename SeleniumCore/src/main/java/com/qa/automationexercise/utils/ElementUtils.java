@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import com.qa.automationexercise.exceptions.FrameworkException;
 
@@ -27,9 +28,11 @@ public class ElementUtils {
 	public void doClick(By locator, int timeOut) {
 		
 	}
+	
 	public WebElement getElement(By locator) {
  		return driver.findElement(locator);	
 	}
+	
 	public  void doSendKeys(By locator, String value) {
 		getElement(locator).sendKeys(value);
 	}
@@ -37,6 +40,7 @@ public class ElementUtils {
 	public void waitElement(By locator, int n) {
 		
 	}
+	
 	public void waitElement(By locator, int n, String s) {
 	
 	}
@@ -68,6 +72,7 @@ public class ElementUtils {
 			return false;
 		}
 	}
+	
 	public String doElementGetAttribute(By locator, String attrName) {
 		return getElement(locator).getAttribute(attrName);
 	}
@@ -92,6 +97,7 @@ public class ElementUtils {
 		}
 		return eleTextList;
 	}
+	
 	public void printElementList(By locator) { 
 		List<String> eleTextList = getElementsTextList(locator);
 		for(String e : eleTextList) {
@@ -129,4 +135,5 @@ public class ElementUtils {
 			return false;
 		}
 	}
+
 }

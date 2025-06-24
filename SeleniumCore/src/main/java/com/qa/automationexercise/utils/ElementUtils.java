@@ -129,4 +129,21 @@ public class ElementUtils {
 			return false;
 		}
 	}
+	
+	
+	public boolean isElementPresent(By locator) {
+		if (getElementsCount(locator) == 1) {
+			return true;
+		}else { 
+			return false;
+		}
+	}
+	public boolean isElementPresent(By locator, int expectedElementCount) {
+		if (getElementsCount(locator) == expectedElementCount ) {
+			return true;
+		}else { 
+			return false;
+		}
+	}
+	 
 }

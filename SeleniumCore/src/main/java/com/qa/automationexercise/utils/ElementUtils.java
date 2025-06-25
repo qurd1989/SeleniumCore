@@ -153,6 +153,8 @@ public class ElementUtils {
 		}
 	}
 	
+	//****************** Select Drop Down Utils***********************
+	
 	public void selectDropdownValueByVisibleText(By locator, String visibleText) {
 		Select select = new Select(getElement(locator));
 		select.selectByVisibleText(visibleText);
@@ -169,5 +171,11 @@ public class ElementUtils {
 		Select select = new Select(getElement(locator));
 		select.selectByValue(value);
 	}
+	
+	public int selectDropDownOptionsCount(By locator) {
+		Select select = new Select(getElement(locator));
+		return select.getOptions().size();
+	}
 
+	
 }

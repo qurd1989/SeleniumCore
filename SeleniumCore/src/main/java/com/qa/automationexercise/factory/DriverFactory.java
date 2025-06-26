@@ -9,6 +9,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.automationexercise.errors.AppError;
@@ -47,6 +48,10 @@ public class DriverFactory {
 	            	WebDriverManager.edgedriver().setup();
 	                driver.set(new EdgeDriver());
 	                break;
+	            case "firefox":
+	            	WebDriverManager.firefoxdriver().setup();
+	            	driver.set(new FirefoxDriver());
+	            	break;
 	            default:
 	            	System.out.println(AppError.INVALID_BROWSER_MSG + browsername + " is Invalid");
 	                throw new BrowserExeption(AppError.INVALID_BROWSER_MSG);

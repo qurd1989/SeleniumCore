@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.qa.automationexercise.constants.AppConstants;
 import com.qa.automationexercise.utils.ElementUtils;
 
 public class LoginPage {
@@ -47,33 +48,28 @@ public class LoginPage {
  	}
  	// 3. Public Page Methods
  	public String getLoginTitle() {
- 		String title = driver.getTitle();
- 		System.out.println("login page title: " + title);
+ 		String title = eleUtil.waitForTitleContainsAndReturns(AppConstants.ACCOUNT_PAGE_TITLE, AppConstants.DEFAULT_SHORT_TIME_OUT);
  		return title;
  	}
  	
- 	public String getLoginPageURL() {
- 		String url = driver.getCurrentUrl();
- 		System.out.println(" URL is: " + url);
+ 	public String getLoginPageURL() { 
+ 		String url = eleUtil.getPageURLContains(AppConstants.LOGIN_PAGE_FRACTION_URL, AppConstants.DEFAULT_SHORT_TIME_OUT);
+	
  		return url;
  	}
  	
  	public boolean isLogoExist() {
- 		return driver.findElement(logo).isDisplayed();
+ 		return eleUtil.isElementDisplayed(logo);
+ 		
  	}
  	
  	public String doLogin(String userName, String pwd) {
  	//	navigateToLoginPage();
- 		 
-		String text = eleUtil.doElementGetAttribute(username, "placeholder");
-		System.out.println(text + " New Text");
- 		driver.findElement(username).clear();
- 		driver.findElement(username).sendKeys(userName);
-		driver.findElement(password).clear();
- 		driver.findElement(password).sendKeys(pwd);;
- 		driver.findElement(loginBtn).click();
- 		String accountPageTitle = driver.getTitle();
- 		System.out.println("Account Page Title: " + accountPageTitle);
+ 		
+		eleUtil.waitForElementVisible(username, AppConstants.DEFAULT_MEDIUM_TIME_OUT).sendKeys(userName);;
+		eleUtil.doSendKeys(password, pwd);
+		eleUtil.doClick(loginBtn);
+		String accountPageTitle = eleUtil.waitForTitleContainsAndReturns(AppConstants.ACCOUNT_PAGE_TITLE, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
  		return accountPageTitle;
  		
  	}

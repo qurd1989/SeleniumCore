@@ -212,5 +212,22 @@ public class ElementUtils {
 			return false;
 		}
 	}
-
+	/**
+	 * An Expectation for checking that an element is present on the DOM of a page and visible on the page
+	 * as well. Visibility means that the element is not only displays but also has a height and width that
+	 * is greater than 0.
+	 * Default polling time/interval time = 500ms 
+	 * @param locator 
+	 * @param timeOut
+	 */
+	public WebElement waitForElementVisible(By locator, int timeOut) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	public WebElement waitForElementVisible(By locator, int timeOut, int intervalTime) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut), Duration.ofSeconds(intervalTime));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
 }

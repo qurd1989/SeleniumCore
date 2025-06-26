@@ -158,21 +158,34 @@ public class ElementUtils {
 		}
 	}
 	
+	//****************** Select Drop Down Utils***********************
+	
+	private Select getSelect(By locator) {
+		return new Select(getElement(locator));
+	}
+	
 	public void selectDropdownValueByVisibleText(By locator, String visibleText) {
-		Select select = new Select(getElement(locator));
-		select.selectByVisibleText(visibleText);
+		
+		getSelect(locator).selectByVisibleText(visibleText);
 		
 	}
 	
 	public void selectDropdownValueByIndex(By locator, int index) {
-		Select select = new Select(getElement(locator));
-		select.selectByIndex(index);
+		getSelect(locator).selectByIndex(index);
 		
 	}
 	
 	public void selectDropdownValueByValue(By locator, String value) {
-		Select select = new Select(getElement(locator));
-		select.selectByValue(value);
+		getSelect(locator).selectByValue(value);
+	}
+	
+	public int selectDropDownOptionsCount(By locator) {
+		return getSelect(locator).getOptions().size();
+	}
+	
+	public void getDropDownOptionsTextList(By locator, String value) {
+		List<WebElement> optionList = getSelect(locator).getOptions();
+		SelectDropdown(optionList, value);
 	}
 	
 	public boolean waitForTitleContains(String fractionTitle, int timeOut) {
@@ -212,6 +225,7 @@ public class ElementUtils {
 			return false;
 		}
 	}
+<<<<<<< ElementUtil-methods
 	/**
 	 * An Expectation for checking that an element is present on the DOM of a page and visible on the page
 	 * as well. Visibility means that the element is not only displays but also has a height and width that
@@ -228,6 +242,28 @@ public class ElementUtils {
 	public WebElement waitForElementVisible(By locator, int timeOut, int intervalTime) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut), Duration.ofSeconds(intervalTime));
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+=======
+
+	/**
+	 * @param method is used to select value from dropdown without using the Select class
+	 * 
+	 */
+	public void selectDropDownValue(By locator, String value) {
+		List<WebElement> optionList = getElements(locator);
+		SelectDropdown(optionList, value);
+	} 
+	
+	private void SelectDropdown(List<WebElement> optionList, String value) {
+		System.out.println("total number of options: " + optionList.size());
+		for (WebElement e : optionList) {
+			String text = e.getText();
+			System.out.println(text);
+			if (text.equals(value)) {
+				e.click();
+				break;
+			}
+		}
+>>>>>>> master
 	}
 	
 }

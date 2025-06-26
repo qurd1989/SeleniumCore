@@ -1,15 +1,20 @@
 package com.qa.automationexercise.utils;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.automationexercise.exceptions.FrameworkException;
 
@@ -168,6 +173,44 @@ public class ElementUtils {
 	public void selectDropdownValueByValue(By locator, String value) {
 		Select select = new Select(getElement(locator));
 		select.selectByValue(value);
+	}
+	
+	public boolean waitForTitleContains(String fractionTitle, int timeOut) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		try {
+			return wait.until(ExpectedConditions.titleContains(fractionTitle));
+		} catch (TimeoutException e) {
+			System.out.println("title is not matched! ");
+			return false;
+		}
+	}
+	public String waitForTitleContainsAndReturns(String fractionTitle, int timeOut) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		try {
+			wait.until(ExpectedConditions.titleContains(fractionTitle));
+			return driver.getTitle();
+		} catch (TimeoutException e) {
+			System.out.println("title is not matched!");
+			return "-1";
+		}
+	}
+	
+	public String getPageURLContains(String fractionURL, int timeout) {
+		if (waitForURLContains(fractionURL, timeout)) {
+			return driver.getCurrentUrl();
+		}else { 
+			return "-1";
+		}
+	}
+
+	private boolean waitForURLContains(String fractionURL, int timeout) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		try {
+			return wait.until(ExpectedConditions.urlContains(fractionURL));//true
+		} catch (TimeoutException e) {
+			System.out.println("URL is not matched! ");
+			return false;
+		}
 	}
 
 }

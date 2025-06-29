@@ -266,4 +266,19 @@ public class ElementUtils {
 
 	}
 	
+	/**
+	 * It verifies that if element is clickable or not 
+	 * @param locator
+	 * @param timeOut
+	 */
+	public boolean isElementClickable(By locator, int timeOut) {
+		try {
+			WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+			wait.until(ExpectedConditions.elementToBeClickable(locator));
+			return true;
+		} catch (TimeoutException e) {
+			System.out.println("Element not clickable! " + locator);
+			return false;
+		}
+	}
 }

@@ -32,7 +32,6 @@ public class LoginPage {
  	}
  	
  	public boolean isOnLoginPage() {
- 		
  			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			return wait.until(ExpectedConditions.visibilityOfElementLocated(username)).isDisplayed();
 	

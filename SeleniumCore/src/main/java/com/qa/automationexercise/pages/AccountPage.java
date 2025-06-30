@@ -25,7 +25,12 @@ public class AccountPage {
  		return title;
  	}
 	
+	public boolean isloggedInAsDisplayed() {
+		return elementUtils.isElementDisplayed(loggedInAs);
+	}
+	
 	public boolean isTestCasesLinkClickable() {
 		return elementUtils.isElementClickable(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
 	}
+	
 }

@@ -7,14 +7,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import com.qa.automationexercise.factory.DriverFactory;
+import com.qa.automationexercise.pages.AccountPage;
 import com.qa.automationexercise.pages.LoginPage;
 
 public class BaseTest {
 	DriverFactory df;
-	WebDriver driver;
+	protected WebDriver driver;
 	protected Properties prop;
 	
 	protected LoginPage loginPage;
+	protected AccountPage accPage;
 	
 	@BeforeTest
 	public void setup() throws NumberFormatException, Exception {

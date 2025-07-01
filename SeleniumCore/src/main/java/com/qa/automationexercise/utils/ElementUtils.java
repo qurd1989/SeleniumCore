@@ -239,6 +239,11 @@ public class ElementUtils {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 	
+	public List<WebElement> waitForElementsVisible(By locator, int timeOut) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+	}
+	
 	public WebElement waitForElementVisible(By locator, int timeOut, int intervalTime) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut), Duration.ofSeconds(intervalTime));
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

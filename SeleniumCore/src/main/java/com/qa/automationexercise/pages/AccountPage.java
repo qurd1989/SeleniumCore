@@ -18,7 +18,7 @@ public class AccountPage {
 	private By loggedInAs = By.xpath("//*[contains(text(), 'Logged in as')]");
 	private By logo = By.xpath("//img[@src='/static/images/home/logo.png']");
 	private By testCaseLink = By.xpath("//*[@class='btn btn-success' and text()='Test Cases']");
-	private By apisListForPraciteLink = By.xpath("//*[contains(text(), 'Logged in as')]");
+	private By apisListForPraciteLink = By.xpath("//*[@class='btn btn-success' and text()='APIs list for practice']");
 	private By headers = By.cssSelector("ul.navbar-nav > li");
 	
 	public AccountPage(WebDriver driver) {

@@ -62,14 +62,13 @@ public class LoginPage {
  		
  	}
  	
- 	public String doLogin(String userName, String pwd) {
+ 	public AccountPage doLogin(String userName, String pwd) {
  	//	navigateToLoginPage();
  		
 		eleUtil.waitForElementVisible(username, AppConstants.DEFAULT_MEDIUM_TIME_OUT).sendKeys(userName);;
 		eleUtil.doSendKeys(password, pwd);
 		eleUtil.doClick(loginBtn);
-		String accountPageTitle = eleUtil.waitForTitleContainsAndReturns(AppConstants.ACCOUNT_PAGE_TITLE, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
- 		return accountPageTitle;
+ 		return new AccountPage(driver);
  		
  	}
 }

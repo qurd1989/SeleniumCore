@@ -28,10 +28,10 @@ public class LoginPageTest extends BaseTest{
 	
 	@Test(priority = Integer.MAX_VALUE)
 	public void loginTest() throws InterruptedException {
-		String actualAccountPageTitle = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
-		boolean isValidTitle = actualAccountPageTitle.equals(AppConstants.LOGIN_PAGE_TITLE) ||
-				actualAccountPageTitle.equals(AppConstants.ACCOUNT_PAGE_TITLE);
-		Assert.assertTrue(isValidTitle, "Unexpected page title: " + actualAccountPageTitle);
+		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+		boolean isValidTitle = accPage.getAccountPageTitle().equals(AppConstants.LOGIN_PAGE_TITLE) ||
+				accPage.getAccountPageTitle().equals(AppConstants.ACCOUNT_PAGE_TITLE);
+		Assert.assertTrue(isValidTitle, "Unexpected page title: " + accPage.getAccountPageTitle());
 		
 	}
 }

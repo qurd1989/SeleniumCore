@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Exercise" thread-count="4" 
+              parallel="tests" verbose="4">
+    <test name="Login Page Test">
+        <!-- <parameter name="browser" value="chrome"/>
+          <parameter name="browserversion" value="117"/>
+           <parameter name="testname" value="Login Page Test"/> -->
+        <classes>
+            <class name="com.qa.automationexercise.tests.LoginPageTest"/>
+        </classes>
+    </test>
+    <test name="Account Page Test">
+        <classes>
+            <class name="com.qa.automationexercise.tests.AccountPageTest"/>
+        </classes>
+    </test>
+    
+</suite>

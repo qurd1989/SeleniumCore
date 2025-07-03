@@ -15,8 +15,8 @@ public class AccountPageTest extends BaseTest {
 
 	@BeforeClass
 	public void accSetup() {
-		loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
-		accPage = new AccountPage(driver);
+		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+		
 	}
 	@Test
 	public void accountPageTitleTest() {

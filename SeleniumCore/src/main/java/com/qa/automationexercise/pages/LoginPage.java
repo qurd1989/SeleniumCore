@@ -68,7 +68,6 @@ public class LoginPage {
 		eleUtil.waitForElementVisible(username, AppConstants.DEFAULT_MEDIUM_TIME_OUT).sendKeys(userName);;
 		eleUtil.doSendKeys(password, pwd);
 		eleUtil.doClick(loginBtn);
-		String accountPageTitle = eleUtil.waitForTitleContainsAndReturns(AppConstants.ACCOUNT_PAGE_TITLE, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
  		return new AccountPage(driver);
  		
  	}

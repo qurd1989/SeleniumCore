@@ -90,7 +90,7 @@ public class ElementUtils {
 		return getElements(locator).size();
 	}
 	
-	public List<String > getElementsTextList(By locator) {
+	public List<String> getElementsTextList(By locator) {
 		List<WebElement> elelist = getElements(locator);
 		List<String> eleTextList = new ArrayList<String>();
 		

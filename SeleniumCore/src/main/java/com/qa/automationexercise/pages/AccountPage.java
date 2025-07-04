@@ -35,10 +35,6 @@ public class AccountPage {
 		return elementUtils.isElementDisplayed(loggedInAs);
 	}
 	
-	public boolean isTestCasesLinkClickable() {
-		return elementUtils.isElementClickable(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
-	}
-	
 	public boolean isLogoIsDisplayed() {
 		return elementUtils.isElementClickable(logo, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
 	}
@@ -55,5 +51,12 @@ public class AccountPage {
 			headrsValueList.add(header);
 		}
 		return headrsValueList;
+	}
+	public boolean isTestCasesLinkClickable() {
+		return elementUtils.isElementClickable(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
+	}
+	public TestCasesPage navigateToTestCasesPage() {
+		elementUtils.doClick(apisListForPraciteLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
+		return new TestCasesPage(driver);
 	}
 }

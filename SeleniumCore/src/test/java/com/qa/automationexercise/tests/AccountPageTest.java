@@ -33,10 +33,6 @@ public class AccountPageTest extends BaseTest {
 	public void isLogoIsDisplayedTest() {
 		Assert.assertTrue(accPage.isLogoIsDisplayed());
 	}
-	@Test
-	public void isTestCasesLinkClickableTest() {
-		Assert.assertTrue(accPage.isTestCasesLinkClickable());
-	}
 	
 	@Test
 	public void getTotalAccountPageHeadersTest() {
@@ -49,4 +45,10 @@ public class AccountPageTest extends BaseTest {
 		List<String> headerList = accPage.getAccountHeaders();
 		Assert.assertEquals(headerList, AppConstants.ACTUAL_ACC_PAGE_HEADERS);
 	}
+	
+	@Test
+	public void isTestCasesLinkClickableTest() {
+		Assert.assertTrue(accPage.isTestCasesLinkClickable());
+	}
+	
 }

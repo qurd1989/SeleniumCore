@@ -18,6 +18,7 @@ public class TestCasesPage {
 	private By headers = By.cssSelector("ul.navbar-nav > li");
 	private By testCasesHyperLinks = By.xpath("//*[@class='panel-title']/a')]");
 	
+	
 	public TestCasesPage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtils(driver);
@@ -41,5 +42,10 @@ public class TestCasesPage {
 	
 	public List<WebElement> getAllTestCasesLink() {
 		return eleUtil.getElements(testCasesHyperLinks);
+	}
+	
+	public ProductPage navigateToProductPAge() {
+		
+		return new ProductPage(driver);
 	}
 }

@@ -102,6 +102,22 @@ public class ElementUtils {
 		}
 		return eleTextList;
 	}
+	/**
+	 * clicks on an element from a list of elements matching the target text
+	 * @param locator
+	 * @param target Text to match
+	 */
+	public void clickElementBy(List<WebElement> elements, String targetText) {
+		
+		for(WebElement e : elements) {
+			String eleText = e.getText().trim();
+			if (eleText.equalsIgnoreCase(targetText)) {
+				e.click();
+				return;
+			}
+		}
+		throw new NoSuchElementException("No such element with text! " + targetText);
+	}
 	
 	public void printElementList(By locator) { 
 		List<String> eleTextList = getElementsTextList(locator);

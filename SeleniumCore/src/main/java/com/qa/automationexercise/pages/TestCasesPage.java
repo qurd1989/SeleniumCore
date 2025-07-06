@@ -44,8 +44,9 @@ public class TestCasesPage {
 		return eleUtil.getElements(testCasesHyperLinks);
 	}
 	
-	public ProductPage navigateToProductPAge() {
-		
+	public ProductPage navigateToProductPage(String productPage) {
+		List<WebElement> headerElements = eleUtil.getElements(headers);
+		eleUtil.clickElementBy(headerElements, productPage);
 		return new ProductPage(driver);
 	}
 }

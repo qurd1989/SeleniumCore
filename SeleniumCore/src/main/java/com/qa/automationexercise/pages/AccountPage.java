@@ -56,7 +56,7 @@ public class AccountPage {
 		return elementUtils.isElementClickable(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
 	}
 	public TestCasesPage navigateToTestCasesPage() {
-		elementUtils.doClick(apisListForPraciteLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
+		elementUtils.doClick(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
 		return new TestCasesPage(driver);
 	}
 }

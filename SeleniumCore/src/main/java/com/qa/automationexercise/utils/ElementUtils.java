@@ -31,7 +31,9 @@ public class ElementUtils {
 		getElement(locator).click();
 	}
 	public void doClick(By locator, int timeOut) {
-		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		element.click();
 	}
 	
 	public WebElement getElement(By locator) {
@@ -42,13 +44,24 @@ public class ElementUtils {
 		getElement(locator).sendKeys(value);
 	}
 	
-	public void waitElement(By locator, int n) {
-		
+	public  void doSendKeys(WebElement element, String value) {
+		element.clear();
+		element.sendKeys(value);
+	}
+	
+	public void doSendKeys(By locator, CharSequence... value) {
+		getElement(locator).sendKeys(value);
+	}
+	
+	public void waitElementVisible(By locator, int n) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(n));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 	
 	public void waitElement(By locator, int n, String s) {
 	
 	}
+	
 	public String getElementText(By locator) {
 		String eleText = getElement(locator).getText();
 		if (eleText != null) {

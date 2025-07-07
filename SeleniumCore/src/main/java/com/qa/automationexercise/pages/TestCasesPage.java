@@ -17,6 +17,7 @@ public class TestCasesPage {
 	private By testCasesText = By.xpath("//*[@class='title text-center']/*[contains(text(), 'Test Cases')]");
 	private By headers = By.cssSelector("ul.navbar-nav > li");
 	private By testCasesHyperLinks = By.xpath("//*[@class='panel-title']/a')]");
+	private By testCaseHeaderText = By.xpath("//*[contains(text(), 'Click on the scenario for detailed Test Steps:')]");
 	
 	
 	public TestCasesPage(WebDriver driver) {
@@ -44,6 +45,9 @@ public class TestCasesPage {
 		return eleUtil.getElements(testCasesHyperLinks);
 	}
 	
+	public String getTestCaseHeaderText() {
+		return eleUtil.getElementText(testCaseHeaderText);
+	}
 	public ProductPage navigateToProductPage(String productPage) {
 		List<WebElement> headerElements = eleUtil.getElements(headers);
 		eleUtil.clickElementBy(headerElements, productPage);

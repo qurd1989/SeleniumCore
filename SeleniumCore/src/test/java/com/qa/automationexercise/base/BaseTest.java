@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeTest;
 import com.qa.automationexercise.factory.DriverFactory;
 import com.qa.automationexercise.pages.AccountPage;
 import com.qa.automationexercise.pages.LoginPage;
+import com.qa.automationexercise.pages.ProductPage;
+import com.qa.automationexercise.pages.TestCasesPage;
 
 public class BaseTest {
 	DriverFactory df;
@@ -17,6 +19,8 @@ public class BaseTest {
 	
 	protected LoginPage loginPage;
 	protected AccountPage accPage;
+	protected TestCasesPage casesPage;
+	protected ProductPage productPage;
 	
 	@BeforeTest
 	public void setup() throws NumberFormatException, Exception {

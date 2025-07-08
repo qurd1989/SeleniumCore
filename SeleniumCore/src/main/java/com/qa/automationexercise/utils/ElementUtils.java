@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -41,7 +41,9 @@ public class ElementUtils {
 	}
 	
 	public  void doSendKeys(By locator, String value) {
-		getElement(locator).sendKeys(value);
+		WebElement element = getElement(locator);
+		element.clear();
+		element.sendKeys(value);
 	}
 	
 	public  void doSendKeys(WebElement element, String value) {
@@ -61,7 +63,7 @@ public class ElementUtils {
 	public void waitElement(By locator, int n, String s) {
 	
 	}
-	
+
 	public String getElementText(By locator) {
 		String eleText = getElement(locator).getText();
 		if (eleText != null) {
@@ -315,4 +317,88 @@ public class ElementUtils {
 			return false;
 		}
 	}
+	
+	/**
+	 * Switches the WebDriver context to a window with the specified URL.
+	 *
+	 * @param driver       the instance of WebDriver
+	 * @param expectedURL  the exact URL of the window to switch to
+	 * @throws RuntimeException if no window with the specified URL is found
+	 */
+	public void switchToWindowByURL(WebDriver driver, String expectedURL) {
+	    Set<String> windowHandles = driver.getWindowHandles();
+
+	    for (String handle : windowHandles) {
+	        driver.switchTo().window(handle);
+	        String currentURL = driver.getCurrentUrl();
+	        if (currentURL.equalsIgnoreCase(expectedURL)) {
+	            System.out.println("Switched to window with URL: " + currentURL);
+	            return;
+	        }
+	    }
+
+	    throw new RuntimeException("Window with URL '" + expectedURL + "' not found.");
+	}
+	/**
+	 * Switches the WebDriver context to a new window that is not the original one.
+	 *
+	 * @param driver the instance of WebDriver
+	 * @throws RuntimeException if no new window is found
+	 */
+	public static void switchToNewWindow(WebDriver driver) {
+	    String originalWindow = driver.getWindowHandle();
+	    Set<String> allWindows = driver.getWindowHandles();
+
+	    for (String windowHandle : allWindows) {
+	        if (!windowHandle.equals(originalWindow)) {
+	            driver.switchTo().window(windowHandle);
+	            System.out.println("Switched to new window: " + driver.getTitle());
+	            return;
+	        }
+	    }
+
+	    throw new RuntimeException("No new window found to switch.");
+	}
+
+	/**
+	 * Switches the WebDriver context to a window with the specified title.
+	 *
+	 * @param driver        the instance of WebDriver
+	 * @param expectedTitle the exact title of the window to switch to
+	 * @throws RuntimeException if no window with the specified title is found
+	 */
+	public static void switchToWindowByTitle(WebDriver driver, String expectedTitle) {
+	    Set<String> windowHandles = driver.getWindowHandles();
+
+	    for (String handle : windowHandles) {
+	        driver.switchTo().window(handle);
+	        String currentTitle = driver.getTitle();
+	        if (currentTitle.equalsIgnoreCase(expectedTitle)) {
+	            System.out.println("Switched to window: " + currentTitle);
+	            return;
+	        }
+	    }
+
+	    throw new RuntimeException("Window with title '" + expectedTitle + "' not found.");
+	}
+	/**
+	 * Closes all browser windows except the original (parent) window and
+	 * switches back to the parent window.
+	 *
+	 * @param driver the instance of WebDriver
+	 */
+	public static void closeAllOtherWindows(WebDriver driver) {
+	    String parent = driver.getWindowHandle();
+	    Set<String> allWindows = driver.getWindowHandles();
+
+	    for (String handle : allWindows) {
+	        if (!handle.equals(parent)) {
+	            driver.switchTo().window(handle);
+	            driver.close();
+	        }
+	    }
+
+	    driver.switchTo().window(parent);
+	}
+
 }

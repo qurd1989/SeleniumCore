@@ -12,6 +12,8 @@ public class AppConstants {
 	public static final String ACCOUNT_PAGE_TITLE = "Automation Exercise";
 	public static final String LOGIN_PAGE_FRACTION_URL = "exercise";
 	
+	public static final String USER_ACCOUNT_INFORMATION = "ENTER ACCOUNT INFORMATION";
+	
 	public static final List<String> ACTUAL_ACC_PAGE_HEADERS = List.of("Home", " Products", "Cart",
 		"Logout", "Delete Account", "Test Cases", "API Testing", "Video Tutorials", "Contact us", "Logged in as elmar");
 	

@@ -23,7 +23,7 @@ public class LoginPage {
  	private By loginBtn = By.xpath("(//*[contains(@class,'btn btn-default')])[1]");
  	private By forgotPwdLink = By.xpath("");
  	private By logo = By.xpath("//*[contains(@src,'/static/images/home/logo.png')]");
- 	private By loginandsignupTap = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a/text()");
+ 	private By loginandsignupTap = By.xpath("//*[@id='header']//*[contains(text(),'Signup / Login')]");
  
  	//2. Public Page Constants
  	public LoginPage(WebDriver driver) {
@@ -70,5 +70,9 @@ public class LoginPage {
 		eleUtil.doClick(loginBtn);
  		return new AccountPage(driver);
  		
+ 	}
+ 	public SignUpPage navigateToSignUpPage() {
+ 		eleUtil.doClick(loginandsignupTap);
+ 		return new SignUpPage(driver);
  	}
 }

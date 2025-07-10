@@ -21,10 +21,12 @@ import com.qa.automationexercise.exceptions.FrameworkException;
 public class ElementUtils {
 	private WebDriver driver;
 	private Actions act;
+	private WaitUtils waitUtil;
 	
 	public ElementUtils(WebDriver driver) {
 		this.driver = driver;
 		act = new Actions(driver);
+		waitUtil = new WaitUtils(driver);
 	}
 	
 	public void doClick(By locator) { 
@@ -37,6 +39,7 @@ public class ElementUtils {
 	}
 	
 	public WebElement getElement(By locator) {
+		waitUtil.waitForVisibility(locator, 10);
  		return driver.findElement(locator);	
 	}
 	
@@ -55,9 +58,16 @@ public class ElementUtils {
 		getElement(locator).sendKeys(value);
 	}
 	
-	public void waitElementVisible(By locator, int n) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(n));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+	/**
+	 * Waits until the element located by the given locator becomes visible and returns it.
+	 *
+	 * @param locator the By locator of the element to wait for
+	 * @param timeoutSeconds the maximum time to wait in seconds
+	 * @return the visible WebElement
+	 */
+	public WebElement waitElementVisible(By locator, int timeoutSeconds) {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+	    return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 	
 	public void waitElement(By locator, int n, String s) {

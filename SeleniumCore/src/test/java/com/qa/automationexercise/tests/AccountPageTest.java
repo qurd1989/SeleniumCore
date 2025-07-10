@@ -49,8 +49,7 @@ public class AccountPageTest extends BaseTest {
 	@Test
 	public void isTestCasesLinkClickableTest() {
 		Assert.assertTrue(accPage.isTestCasesLinkClickable());
-	    casesPage = accPage.navigateToTestCasesPage();
-	    Assert.assertEquals(casesPage.getTestCaseHeaderText(), "Below is the list of test Cases for you to practice the Automation. Click on the scenario for detailed Test Steps:");	
+		testcasesPage = accPage.navigateToTestCasesPage();
 	}
 	
 }

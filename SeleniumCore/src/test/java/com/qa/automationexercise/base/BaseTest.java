@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeTest;
 import com.qa.automationexercise.factory.DriverFactory;
 import com.qa.automationexercise.pages.AccountPage;
 import com.qa.automationexercise.pages.LoginPage;
+import com.qa.automationexercise.pages.ProductCategoryPage;
 import com.qa.automationexercise.pages.ProductPage;
 import com.qa.automationexercise.pages.SignUpPage;
 import com.qa.automationexercise.pages.TestCasesPage;
@@ -20,9 +21,10 @@ public class BaseTest {
 	
 	protected LoginPage loginPage;
 	protected AccountPage accPage;
-	protected TestCasesPage casesPage;
+	protected TestCasesPage testcasesPage;
 	protected ProductPage productPage;
 	protected SignUpPage signUpPage;
+	protected ProductCategoryPage productCategoryPage;
 	
 	@BeforeTest
 	public void setup() throws NumberFormatException, Exception {

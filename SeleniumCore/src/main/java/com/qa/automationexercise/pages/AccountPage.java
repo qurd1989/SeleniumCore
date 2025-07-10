@@ -1,6 +1,6 @@
 package com.qa.automationexercise.pages;
 
-import java.lang.annotation.ElementType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +58,10 @@ public class AccountPage {
 	public TestCasesPage navigateToTestCasesPage() {
 		elementUtils.doClick(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
 		return new TestCasesPage(driver);
+	}
+
+	public ProductPage navigateToProductPage() {
+		//Will need to work on this methods
+		return null;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.asserts.SoftAssert;
 
 import com.qa.automationexercise.factory.DriverFactory;
 import com.qa.automationexercise.pages.AccountPage;
@@ -26,6 +27,7 @@ public class BaseTest {
 	protected SignUpPage signUpPage;
 	protected ProductCategoryPage productCategoryPage;
 	
+	protected SoftAssert softAssert;
 	@BeforeTest
 	public void setup() throws NumberFormatException, Exception {
 		df = new DriverFactory();
@@ -34,6 +36,7 @@ public class BaseTest {
 		
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);
+		softAssert = new SoftAssert();
 	}
 	
 	@AfterTest

@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
 import com.qa.automationexercise.factory.DriverFactory;
@@ -28,11 +29,17 @@ public class BaseTest {
 	protected ProductCategoryPage productCategoryPage;
 	
 	protected SoftAssert softAssert;
+	
+	@Parameters({"browser"})
 	@BeforeTest
-	public void setup() throws NumberFormatException, Exception {
+	public void setup(String browserName) throws NumberFormatException, Exception {
 		df = new DriverFactory();
-		
 		prop = df.initProp();
+		
+		//check if browser param comes from testng.xml
+		if (browserName != null) {
+			prop.setProperty("browser", browserName);
+		}
 		
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);

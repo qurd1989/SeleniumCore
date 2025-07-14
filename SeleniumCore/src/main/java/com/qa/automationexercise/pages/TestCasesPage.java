@@ -2,6 +2,7 @@ package com.qa.automationexercise.pages;
 
 import java.lang.annotation.ElementType;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +62,7 @@ public class TestCasesPage {
 	
 	private void getTestCasesDetails() {
 		List<WebElement> headerElmements = eleUtil.getElements(testCasesHyperLinks);
-		testCasesMap = new HashMap<String, String>();
+		testCasesMap = new LinkedHashMap<String, String>();
 		for (WebElement e : headerElmements) {
 			String text = e.getText().trim();
 			String testCaseData [] = text.split(":");

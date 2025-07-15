@@ -17,5 +17,7 @@ public class AppConstants {
 	public static final List<String> ACTUAL_ACC_PAGE_HEADERS = List.of("Home", " Products", "Cart",
 		"Logout", "Delete Account", "Test Cases", "API Testing", "Video Tutorials", "Contact us", "Logged in as elmar");
 	
-
+	
+	//********Sheet names**********
+	public static final String SIGNUP_SHEET_NAME = "SignUP";
 }

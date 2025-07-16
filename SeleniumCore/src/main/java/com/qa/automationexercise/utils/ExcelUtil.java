@@ -33,13 +33,13 @@ public class ExcelUtil {
 			}
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("File not found" + e);
 			e.printStackTrace();
 		} catch (EncryptedDocumentException e) {
-			// TODO Auto-generated catch block
+			System.out.println("File is encrypted" + e);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Some other error" + e);
 			e.printStackTrace();
 		}
 		

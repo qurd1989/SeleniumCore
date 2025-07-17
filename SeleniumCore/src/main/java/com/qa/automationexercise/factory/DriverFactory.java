@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.automationexercise.errors.AppError;
 import com.qa.automationexercise.exceptions.BrowserExeption;
+import com.qa.automationexercise.exceptions.FrameworkException;
 import com.qa.automationexercise.utils.ConfigReader;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -71,20 +72,47 @@ public class DriverFactory {
 	    }
 	    
 	    /**
-	     * this methid is used to init properties the config file 
+	     * this method is used to init properties the config file 
 	     * @return
+	     * @throws FileNotFoundException 
 	     */
-	    public Properties initProp()  { 
+	    public Properties initProp() throws FileNotFoundException  { 
 	    	prop = new Properties();
+			FileInputStream ip = null;
+
+	    	String envName = System.getProperty("env");
+	    	System.out.println("running test on env" + envName);
+	    	
+	    	if (envName == null) {
+				System.out.println("env is null.... hence running test on QA env");
+				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+			}else {
+				switch(envName.toLowerCase().trim()) {
+				case"qa":
+					ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+					break;
+				case"dev":
+					ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
+					break;
+				case"uat":
+					ip = new FileInputStream("./src/test/resources/config/uat.config.properties");
+					break;
+				case"stage":
+					ip = new FileInputStream("./src/test/resources/config/config.properties");
+					break;
+					
+				default:
+					System.out.println("please right env name... " + envName);
+					throw new FrameworkException("INVALID ENV NAME");
+				}
+			}	
+	    	
 	    	try {
-				FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
 				prop.load(ip);
 				
-			} catch (FileNotFoundException e) { 
-				// TODO Auto-generated catch block
+			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    	return prop;

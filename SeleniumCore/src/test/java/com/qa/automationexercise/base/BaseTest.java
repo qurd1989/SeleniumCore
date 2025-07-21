@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
@@ -32,7 +33,7 @@ public class BaseTest {
 	
 	@Parameters({"browser"})
 	@BeforeTest
-	public void setup(String browserName) throws NumberFormatException, Exception {
+	public void setup(@Optional("chrome") String browserName) throws NumberFormatException, Exception {
 		df = new DriverFactory();
 		prop = df.initProp();
 		

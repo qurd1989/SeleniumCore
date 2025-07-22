@@ -29,19 +29,19 @@
       </configuration>
     </plugin>
     
-<!--    <plugin>
+   <plugin>
        <groupId>org.apache.maven.plugins</groupId>
        <artifactId>maven-surefire-plugin</artifactId>
        <version>3.5.3</version>
       <configuration>
         <suiteXmlFiles>
-            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+            <suiteXmlFile>src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>
         </suiteXmlFiles>
       </configuration>
     </plugin>
-  -->  
+
   
-  <plugin>
+  <!--<plugin>
        <groupId>org.apache.maven.plugins</groupId>
        <artifactId>maven-surefire-plugin</artifactId>
        <version>3.5.3</version>
@@ -51,7 +51,7 @@
         <testNG>true</testNG>
         </includes>
       </configuration>
-    </plugin>
+    </plugin>-->
     
   </plugins>
 </build>
@@ -122,14 +122,6 @@
     <version>7.26.0</version>
 </dependency>
 
-<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>7.22.1</version>
-    <scope>test</scope>
-</dependency>
-
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 <dependency>
     <groupId>io.cucumber</groupId>
@@ -137,12 +129,5 @@
     <version>7.22.1</version>
 </dependency>
 
-<!-- https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine -->
-<dependency>
-    <groupId>org.junit.vintage</groupId>
-    <artifactId>junit-vintage-engine</artifactId>
-    <version>5.13.0-M3</version>
-    <scope>test</scope>
-</dependency>
   </dependencies>
 </project>

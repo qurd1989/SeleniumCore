@@ -2,18 +2,16 @@ package com.qa.automationexercise.utils;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.qa.automationexercise.factory.DriverFactory;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.automationexercise.exceptions.FrameworkException;
@@ -22,11 +20,14 @@ public class ElementUtils {
 	private WebDriver driver;
 	private Actions act;
 	private WaitUtils waitUtil;
+	private JavaScriptUtil jsUtil;
+
 	
 	public ElementUtils(WebDriver driver) {
 		this.driver = driver;
 		act = new Actions(driver);
 		waitUtil = new WaitUtils(driver);
+		jsUtil = new JavaScriptUtil(driver);
 	}
 	
 	public void doClick(By locator) { 
@@ -37,11 +38,21 @@ public class ElementUtils {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
 		element.click();
 	}
-	
-	public WebElement getElement(By locator) {
-		waitUtil.waitForVisibility(locator, 10);
- 		return driver.findElement(locator);	
+
+	/**
+	 * Clicks on an element and highlights it if eleHighlight is set to true.
+	 * @param element the By locator of the element to click
+	 */
+	private void checkElementHighlight(WebElement element) {
+		if (Boolean.parseBoolean(DriverFactory.isEleHighlight)){
+			jsUtil.flash(element);
+		}
 	}
+	public WebElement getElement(By locator) {
+		WebElement element = waitUtil.waitForVisibility(locator, 10);
+		checkElementHighlight(element);
+	   return element;
+    }
 	
 	public  void doSendKeys(By locator, String value) {
 		WebElement element = getElement(locator);
@@ -55,6 +66,7 @@ public class ElementUtils {
 	}
 	
 	public void doSendKeys(By locator, CharSequence... value) {
+
 		getElement(locator).sendKeys(value);
 	}
 	
@@ -76,7 +88,7 @@ public class ElementUtils {
 
 	public String getElementText(By locator) {
 		String eleText = getElement(locator).getText();
-		if (eleText != null) {
+		if (!eleText.isEmpty()) {
 			return eleText;
 		}else {
 			System.out.println("Element test is null: " + eleText);
@@ -129,8 +141,8 @@ public class ElementUtils {
 	}
 	/**
 	 * clicks on an element from a list of elements matching the target text
-	 * @param locator
-	 * @param target Text to match
+	 * @param elements List of WebElements to search
+	 * @param targetText to match
 	 */
 	public void clickElementBy(List<WebElement> elements, String targetText) {
 		
@@ -272,12 +284,14 @@ public class ElementUtils {
 	 * as well. Visibility means that the element is not only displays but also has a height and width that
 	 * is greater than 0.
 	 * Default polling time/interval time = 500ms 
-	 * @param locator 
-	 * @param timeOut
+	 * @param locator  is used to find the element
+	 * @param timeOut is the maximum time to wait for the element to be visible
 	 */
 	public WebElement waitForElementVisible(By locator, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		WebElement element =  wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		checkElementHighlight(element);
+		return element;
 	}
 	
 	public List<WebElement> waitForElementsVisible(By locator, int timeOut) {
@@ -290,8 +304,27 @@ public class ElementUtils {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
+
 	/**
-	 * @param method is used to select value from dropdown without using the Select class
+	 * Waits for an element to be visible using fluent wait features.
+	 *
+	 * @param locator the By locator of the element to wait for
+	 * @param timeOut the maximum time to wait in seconds
+	 * @param pollingTime the polling interval in milliseconds
+	 * @return the visible WebElement
+	 */
+	public WebElement waitForElementVisibleWithFluentFeatures(By locator, int timeOut, int pollingTime) {
+		Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut))
+				.pollingEvery(Duration.ofMillis(pollingTime))
+				.ignoring(NoSuchElementException.class)
+				.ignoring(TimeoutException.class)
+				.ignoring(ElementNotInteractableException.class)
+				.withMessage("Element is not visible");
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+
+	/**
+	 * @param locator is used to select value from dropdown without using the Select class
 	 * 
 	 */
 	public void selectDropDownValue(By locator, String value) {

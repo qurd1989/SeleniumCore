@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.automationexercise.errors.AppError;
 import com.qa.automationexercise.exceptions.BrowserExeption;
@@ -23,6 +22,7 @@ public class DriverFactory {
 
 	  private static final ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	  Properties prop;
+	  public static String isEleHighlight;
 	
 	  public DriverFactory() {}
 
@@ -31,7 +31,7 @@ public class DriverFactory {
 	    }
 	    /**
 	     * this method is used to init the driver on the basis of given browsername
-	     * @param browsername
+	     * @param prop 
 	     * @returnit returns driver
 	     * @throws NumberFormatException
 	     * @throws Exception
@@ -39,7 +39,7 @@ public class DriverFactory {
 	    public WebDriver initDriver(Properties prop) {
 	    	
 	    	String  browsername = prop.getProperty("browser");
-	    	
+			isEleHighlight = prop.getProperty("highlight");
 	        switch (browsername.toLowerCase().trim()) {
 	            case "chrome":
 	                WebDriverManager.chromedriver().setup();
@@ -81,30 +81,22 @@ public class DriverFactory {
 			FileInputStream ip = null;
 
 	    	String envName = System.getProperty("env");
-	    	System.out.println("running test on env" + envName);
+	    	System.out.println("running test on env " + envName);
 	    	
 	    	if (envName == null) {
 				System.out.println("env is null.... hence running test on QA env");
 				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
 			}else {
-				switch(envName.toLowerCase().trim()) {
-				case"qa":
-					ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
-					break;
-				case"dev":
-					ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
-					break;
-				case"uat":
-					ip = new FileInputStream("./src/test/resources/config/uat.config.properties");
-					break;
-				case"stage":
-					ip = new FileInputStream("./src/test/resources/config/config.properties");
-					break;
-					
-				default:
-					System.out.println("please right env name... " + envName);
-					throw new FrameworkException("INVALID ENV NAME");
-				}
+                ip = switch (envName.toLowerCase().trim()) {
+                    case "qa" -> new FileInputStream("./src/test/resources/config/qa.config.properties");
+                    case "dev" -> new FileInputStream("./src/test/resources/config/dev.config.properties");
+                    case "uat" -> new FileInputStream("./src/test/resources/config/uat.config.properties");
+                    case "stage" -> new FileInputStream("./src/test/resources/config/config.properties");
+                    default -> {
+                        System.out.println("please right env name... " + envName);
+                        throw new FrameworkException("INVALID ENV NAME");
+                    }
+                };
 			}	
 	    	
 	    	try {

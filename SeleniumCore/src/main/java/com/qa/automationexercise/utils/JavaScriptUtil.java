@@ -87,7 +87,7 @@ public class JavaScriptUtil {
      */
     public void flash(WebElement element) {
         String originalStyle = element.getAttribute("style");
-        js.executeScript("arguments[0].style.backgroundColor = 'yellow'", element);
+        js.executeScript("arguments[0].style.backgroundColor = 'green'", element);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

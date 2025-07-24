@@ -90,10 +90,10 @@ public class ElementUtils {
 		String eleText = getElement(locator).getText();
 		if (!eleText.isEmpty()) {
 			return eleText;
-		}else {
-			System.out.println("Element test is null: " + eleText);
+		} else {
+			System.out.println("Element text is null or empty: " + eleText);
 		}
-		return null;
+	 		return null;
 	}
 	 
 	public boolean isElementDisplayed(By locator) {

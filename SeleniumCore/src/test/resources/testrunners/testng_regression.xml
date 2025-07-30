@@ -11,16 +11,19 @@
         </classes>
     </test>
     <test name="Account Page Test">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.qa.automationexercise.tests.AccountPageTest"/>
         </classes>
     </test>
     <test name="Test Cases Page Test">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.qa.automationexercise.tests.TestCasesPageTest"/>
         </classes>
     </test>
     <test name="Sign Up Page Test">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.qa.automationexercise.tests.SignUpPageTest"/>
         </classes>

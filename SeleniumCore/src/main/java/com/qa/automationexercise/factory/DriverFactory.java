@@ -46,7 +46,7 @@ public class DriverFactory {
 	        switch (browsername.toLowerCase().trim()) {
 	            case "chrome":
 	                WebDriverManager.chromedriver().setup();
-	                driver.set(new ChromeDriver(optionsManager.getCromeOptions()));
+	                driver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 	                break;
 	            case "edge":
 	            	WebDriverManager.edgedriver().setup();

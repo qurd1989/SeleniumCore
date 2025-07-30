@@ -21,7 +21,7 @@ public class OptionsManager {
      * This method initializes ChromeOptions based on properties defined in the config file.
      * It sets options like headless mode, incognito mode, and other browser settings.
      */
-    public ChromeOptions getCromeOptions() {
+    public ChromeOptions getChromeOptions() {
         chromeOptions = new ChromeOptions();
         if (Boolean.parseBoolean(prop.getProperty("headless"))) {
             chromeOptions.addArguments("--headless");
@@ -39,7 +39,7 @@ public class OptionsManager {
     }
 
     /**
-     * This method initializes EdgeOptions based on properties defined in the config file.
+     * This method initializes FirefoxOptions based on properties defined in the config file.
      * It sets options like headless mode, incognito mode, and other browser settings.
      */
     public FirefoxOptions getFirefoxOptions() {
@@ -48,7 +48,7 @@ public class OptionsManager {
             firefoxOptions.addArguments("--headless");
         }
         if (Boolean.parseBoolean(prop.getProperty("incognito"))) {
-            firefoxOptions.addArguments("--incognito");
+            firefoxOptions.addArguments("--private-window");
         }
         /*if (Boolean.parseBoolean(prop.getProperty("disable-notifications"))) {
             firefoxOptions.addArguments("--disable-notifications");

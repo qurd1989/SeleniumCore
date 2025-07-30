@@ -40,18 +40,21 @@ public class DriverFactory {
 	    	
 	    	String  browsername = prop.getProperty("browser");
 			isEleHighlight = prop.getProperty("highlight");
+
+			OptionsManager optionsManager = new OptionsManager(prop);
+
 	        switch (browsername.toLowerCase().trim()) {
 	            case "chrome":
 	                WebDriverManager.chromedriver().setup();
-	                driver.set(new ChromeDriver());
+	                driver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 	                break;
 	            case "edge":
 	            	WebDriverManager.edgedriver().setup();
-	                driver.set(new EdgeDriver());
+	                driver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
 	                break;
 	            case "firefox":
 	            	WebDriverManager.firefoxdriver().setup();
-	            	driver.set(new FirefoxDriver());
+	            	driver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
 	            	break;
 	            default:
 	            	System.out.println(AppError.INVALID_BROWSER_MSG + browsername + " is Invalid");

@@ -27,7 +27,8 @@ public class DriverFactory {
 	  public DriverFactory() {}
 
 	    public static WebDriver getDriver() {
-	        return driver.get();
+
+		  return driver.get();
 	    }
 	    /**
 	     * this method is used to init the driver on the basis of given browsername
@@ -62,11 +63,12 @@ public class DriverFactory {
 	        }
 
 	        getDriver().manage().window().maximize();
+			getDriver().manage().deleteAllCookies();
+
 	        try {
 				getDriver(). manage().timeouts().implicitlyWait(Duration.ofSeconds(
 				        Long.parseLong(ConfigReader.get("impnlicitWait"))));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        getDriver().get(prop.getProperty("url"));

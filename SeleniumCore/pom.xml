@@ -14,6 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
      <maven.compiler.source>19</maven.compiler.source>
     <maven.compiler.target>19</maven.compiler.target>
+      <extentreports.version>5.1.2</extentreports.version>
   </properties>
   
 <build>
@@ -129,5 +130,11 @@
     <version>7.22.1</version>
 </dependency>
 
+      <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+      <dependency>
+          <groupId>com.aventstack</groupId>
+          <artifactId>extentreports</artifactId>
+          <version>${extentreports.version}</version>
+      </dependency>
   </dependencies>
 </project>

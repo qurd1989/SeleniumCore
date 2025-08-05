@@ -113,7 +113,6 @@
     <groupId>org.testng</groupId>
     <artifactId>testng</artifactId>
     <version>7.11.0</version>
-    <scope>test</scope>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
@@ -136,5 +135,6 @@
           <artifactId>extentreports</artifactId>
           <version>${extentreports.version}</version>
       </dependency>
+      
   </dependencies>
 </project>

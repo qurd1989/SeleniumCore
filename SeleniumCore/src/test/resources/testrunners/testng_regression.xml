@@ -2,6 +2,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Automation Exercise" thread-count="4" 
               parallel="tests" verbose="4">
+    <listeners>
+      <!--  <listener class-name="com.qa.automationexercise.listeners.TestListener"/>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/> -->
+        <listener class-name="com.qa.automationexercise.listeners.ExtentReportListener"/>
+      <!--  <listener class-name="com.qa.automationexercise.listeners.FrameworkListener"/> -->
+    </listeners>
+
     <test name="Login Page Test">
           <!-- <parameter name="browser" value="chrome"/>
           <parameter name="browserversion" value="117"/>

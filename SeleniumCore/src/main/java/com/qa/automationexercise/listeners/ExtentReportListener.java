@@ -1,21 +1,25 @@
 package com.qa.automationexercise.listeners;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.automationexercise.exceptions.FrameworkException;
+import com.qa.automationexercise.factory.DriverFactory;
 import org.testng.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ExtentReportListener implements ITestListener {
 
     private static final String REPORT_FILE_NAME = "ExtentReport.html";
-    private static final String OUTPUT_FOLDER = "test-output/ExtentReports/";
+    private static final String OUTPUT_FOLDER = "ExtentReports/";
 
     private static ExtentReports extent = init();
-    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
     private static ExtentReports extentReports;
 
     private static ExtentReports init() {
@@ -29,11 +33,10 @@ public class ExtentReportListener implements ITestListener {
                 throw new FrameworkException("Failed to create output directory: " + OUTPUT_FOLDER);
             }
         }
-        ExtentReports extent = new ExtentReports();
+        extentReports  = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter(OUTPUT_FOLDER + REPORT_FILE_NAME);
         spark.config().setReportName("Automation Exercise Test Report");
 
-        assert extentReports != null;
         extentReports.attachReporter(spark);
         extentReports.setSystemInfo("Application Name", "Automation Exercise");
         extentReports.setSystemInfo("Environment", "QA");
@@ -68,11 +71,43 @@ public class ExtentReportListener implements ITestListener {
         int last = qualifiedName.lastIndexOf(".");
         int mid = qualifiedName.substring(0, last).lastIndexOf(".");
         String className = qualifiedName.substring(mid + 1, last);
+
         System.out.println("Test started: " + methodName + " in class: " + className);
         ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName(),
                 result.getMethod().getDescription());
+        extentTest.assignCategory(result.getTestContext().getSuite().getName(), result.getMethod().getDescription());
+        extentTest.assignCategory(className);
+        test.set(extentTest);
+        test.get().getModel().setStartTime(getTime(result.getStartMillis()));
+    }
+    public synchronized void onTestSuccess(ITestResult result) {
+        String methodName = result.getMethod().getMethodName();
+        System.out.println("Test passed: " + methodName);
+        test.get().pass("Test passed");
+        test.get().getModel().setEndTime(getTime(result.getEndMillis()));
+    }
+    public synchronized void onTestFailure(ITestResult result) {
+        System.out.println("Test failed: " + result.getMethod().getMethodName());
+        String methodName = result.getMethod().getMethodName();
+        System.out.println("Test failed: " + methodName);
+        //test.get().fail(result.getThrowable(),
+         //       MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), );
+        test.get().getModel().setEndTime(getTime(result.getEndMillis()));
+    }
 
-        System.out.println("Test started: " + result.getName());
+    public synchronized void onTestSkipped(ITestResult result) {
+        System.out.println("Test skipped: " + result.getMethod().getMethodName());
+        String methodName = result.getMethod().getMethodName();
+        test.get().skip(result.getThrowable());
+        test.get().getModel().setEndTime(getTime(result.getEndMillis()));
+    }
 
+    public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+        System.out.println("Test failed but within success percentage: " + result.getMethod().getMethodName());
+    }
+    private Date getTime(long startMillis) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(startMillis);
+        return calendar.getTime();
     }
 }

@@ -105,6 +105,13 @@ public class ExtentReportListener implements ITestListener {
     public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         System.out.println("Test failed but within success percentage: " + result.getMethod().getMethodName());
     }
+    /**
+     * This method converts milliseconds to a Date object.
+     * It is used to set the start and end time of the test in the report.
+     *
+     * @param startMillis The start time in milliseconds.
+     * @return A Date object representing the start time.
+     */
     private Date getTime(long startMillis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(startMillis);

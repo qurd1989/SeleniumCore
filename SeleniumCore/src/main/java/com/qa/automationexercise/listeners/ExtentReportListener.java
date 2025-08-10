@@ -84,14 +84,14 @@ public class ExtentReportListener implements ITestListener {
         String methodName = result.getMethod().getMethodName();
         System.out.println("Test passed: " + methodName);
         test.get().pass("Test passed");
+        test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), methodName).build());
         test.get().getModel().setEndTime(getTime(result.getEndMillis()));
     }
     public synchronized void onTestFailure(ITestResult result) {
         System.out.println("Test failed: " + result.getMethod().getMethodName());
         String methodName = result.getMethod().getMethodName();
-        System.out.println("Test failed: " + methodName);
-        //test.get().fail(result.getThrowable(),
-         //       MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), );
+        test.get().fail("Test failed: " + methodName);
+        test.get().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), methodName).build());
         test.get().getModel().setEndTime(getTime(result.getEndMillis()));
     }
 

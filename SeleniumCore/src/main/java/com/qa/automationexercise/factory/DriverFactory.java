@@ -1,11 +1,14 @@
 package com.qa.automationexercise .factory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -17,6 +20,7 @@ import com.qa.automationexercise.exceptions.FrameworkException;
 import com.qa.automationexercise.utils.ConfigReader;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.io.FileHandler;
 
 public class DriverFactory {
 
@@ -114,6 +118,26 @@ public class DriverFactory {
 			}
 	    	return prop;
 	    }
+
+			    /**
+	     * this method is used to take screenshot
+	     * @param methodName
+	     * @return
+	     */
+		public static String getScreenshot(String methodName) {
+			File srcFile = ((TakesScreenshot) getDriver() ).getScreenshotAs(OutputType.FILE); //temp fil
+			// e
+			String path = System.getProperty("user.dir") + "/screenshot/" + methodName +  "_" +  System.currentTimeMillis()
+			+ ".png";
+			File destination = new File(path);
+			try {
+				FileHandler.copy(srcFile, destination);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return path;
+		}
+
 	    
 	    public static void quitDriver() {
 	        if (driver.get() != null) {

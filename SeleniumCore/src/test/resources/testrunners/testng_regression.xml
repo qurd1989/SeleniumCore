@@ -8,6 +8,7 @@
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/> -->
         <listener class-name="com.qa.automationexercise.listeners.ExtentReportListener"/>
        <listener class-name="com.qa.automationexercise.listeners.AnnotationTransformer"/>
+        <listener class-name="com.qa.automationexercise.listeners.TestAllureListener"/>
     </listeners>
 
     <test name="Login Page Test">

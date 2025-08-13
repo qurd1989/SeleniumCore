@@ -3,6 +3,8 @@ package com.qa.automationexercise.pages;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -12,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.qa.automationexercise.constants.AppConstants;
 import com.qa.automationexercise.utils.ElementUtils;
 
+@Epic("Epic#: 100,  Login Page")
+@Feature("Login Functionality")
 public class LoginPage {
 	private WebDriver driver;
 	private ElementUtils eleUtil;
@@ -26,6 +30,11 @@ public class LoginPage {
  	private By loginandsignupTap = By.xpath("//*[@id='header']//*[contains(text(),'Signup / Login')]");
  
  	//2. Public Page Constants
+	 	/**
+ 	 * Constructor to initialize the WebDriver and ElementUtils.
+ 	 *
+ 	 * @param driver the WebDriver instance
+ 	 */
  	public LoginPage(WebDriver driver) {
  		this.driver = driver;
  		this.eleUtil = new ElementUtils(driver);

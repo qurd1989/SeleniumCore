@@ -15,7 +15,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.qa.automationexercise.errors.AppError;
-import com.qa.automationexercise.exceptions.BrowserExeption;
+import com.qa.automationexercise.exceptions.BrowserException;
 import com.qa.automationexercise.exceptions.FrameworkException;
 import com.qa.automationexercise.utils.ConfigReader;
 
@@ -63,7 +63,7 @@ public class DriverFactory {
 	            	break;
 	            default:
 	            	System.out.println(AppError.INVALID_BROWSER_MSG + browsername + " is Invalid");
-	                throw new BrowserExeption(AppError.INVALID_BROWSER_MSG);
+	                throw new BrowserException(AppError.INVALID_BROWSER_MSG);
 	        }
 
 	        getDriver().manage().window().maximize();

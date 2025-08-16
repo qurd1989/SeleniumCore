@@ -6,7 +6,7 @@ public class BrowserException extends RuntimeException {
  * related to browser operations, such as initialization failures or
  * unsupported browser types.
      */
-	public BrowserException(String mesg) {
-		super(mesg);
+	public BrowserException(String message) {
+		super(message);
 	}
 }

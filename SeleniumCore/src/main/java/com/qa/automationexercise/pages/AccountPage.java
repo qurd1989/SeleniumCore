@@ -52,7 +52,7 @@ public class AccountPage {
 		}
 		return headrsValueList;
 	}
-	public boolean isTestCasesLinkClickable() {
+	public boolean  isTestCasesLinkClickable() {
 		return elementUtils.isElementClickable(testCaseLink, AppConstants.DEFAULT_MEDIUM_TIME_OUT);
 	}
 	public TestCasesPage navigateToTestCasesPage() {

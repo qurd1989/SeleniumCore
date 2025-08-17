@@ -72,8 +72,6 @@ public class LoginPage {
  	}
  	
  	public AccountPage doLogin(String userName, String pwd) {
- 	//	navigateToLoginPage();
- 		
 		eleUtil.waitForElementVisible(username, AppConstants.DEFAULT_MEDIUM_TIME_OUT).sendKeys(userName);;
 		eleUtil.doSendKeys(password, pwd);
 		eleUtil.doClick(loginBtn);

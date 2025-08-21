@@ -4,6 +4,10 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITest;
 import org.testng.ITestResult;
 
+/**
+ * Retry class implements IRetryAnalyzer to provide retry functionality for failed tests.
+ * It allows a test to be retried a specified number of times if it fails.
+ */
 public class Retry implements IRetryAnalyzer {
     private int retryCount = 0;
     private static final int maxRetryCount = 3; // Set the maximum number of retries
